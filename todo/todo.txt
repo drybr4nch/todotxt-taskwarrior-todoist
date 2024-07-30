@@ -1,0 +1,26 @@
+(A) make FP zapiski +college
+(A) make ANA zapiski +college
+(B) FP final +college @lj due:2024-08-27
+(B) ANA final +college @lj due:2024-09-03
+(B) IEPS final +college @lj due:2024-09-04
+(B) SMRPO final +college @lj due:2024-09-05 
+read Neuromancer +reading
+read Snow Crash +reading
+read The Diamond Age: Or, A Young Ladys Illustrated Primer +reading
+read Cryptonomicon +reading
+read The Hitchhikers Guide to the Galaxy +reading
+read Permutation City +reading
+read Altered Carbon +reading
+read Daemon +reading
+read Player Piano +reading
+read Code: The Hidden Language of Computer Hardware and Software +reading
+read Clean Code A Handbook Of Agile Software Craftsmanship +reading
+read The Pragmatic Programmer: Your Journey to Mastery +reading
+read Design Patterns: Elements of Reusable Object-Oriented Software +reading
+read Structure and Interpretation of Computer Programs +reading
+read Introduction to the Theory of Computation +reading
+read Algorithms (Robert Sedgewick and Kevin Wayne) +reading
+read The Mythical Man-Month: Essays on Software Engineering +reading
+read You Dont Know JS (book series) +reading
+read Deep Learning +reading
+find job +work
