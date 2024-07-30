@@ -22,7 +22,7 @@ Basically I made this out of an obsession with productivity apps.
 Feel free to fork, expand, yada yada, still a work in progress.
 Might seem overly enginnered, that is because it is, I could literally just use one app for everything I myself struggle to find the usefuleness of this but hey at least my tasks are organized.
 Please share if you find this useful, feel free to recommend me a calendar app that would have good integrations with this system.
-You can reach me at jneelson08@gmail.com if you have anything to say.
+You can reach me at tl9740@student.uni-lj.si if you have anything to say.
 
 # To Do
 - [ ] add support to mark tasks as done from one application across all 4
