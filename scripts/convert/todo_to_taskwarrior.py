@@ -34,11 +34,7 @@ def parse_todo_txt_line(line):
     
     creation_date_match = re.match(r'(\d{4}-\d{2}-\d{2})', line)
     creation_date = creation_date_match.group(1) if creation_date_match else ''
-    line = re.sub(r'\d{4}-\d{2}-\d{2}', '', line).strip() if creation_date_match else line
-
-    due_date_match = re.search(r'due:(\d{4}-\d{2}-\d{2})', line)
-    due_date = due_date_match.group(1) if due_date_match else ''
-    line = re.sub(r'due:\d{4}-\d{2}-\d{2}', '', line).strip() if due_date_match else line
+    line = re.sub(r'\d{4}-\d{2}-\d{2}', '', line, 1).strip() if creation_date_match else line
 
     # Extract projects (+Project)
     projects = re.findall(r'\+(\w+)', line)
@@ -48,12 +44,13 @@ def parse_todo_txt_line(line):
     tags = re.findall(r'\@(\w+)', line)
     line = re.sub(r'\@\w+', '', line).strip()
 
-    # Extract description (after " -- ")
-    parts = line.split(' -- ', 1)
-    task = parts[0].strip()
-    description = parts[1].strip() if len(parts) > 1 else ''
+    due_date_match = re.search(r'due:(\d{4}-\d{2}-\d{2})', line)
+    due_date = due_date_match.group(1) if due_date_match else ''
+    line = re.sub(r'due:\d{4}-\d{2}-\d{2}', '', line).strip() if due_date_match else line
 
-    return is_complete, completed_date, creation_date, priority, due_date, projects, tags, task, description
+    task = line
+
+    return is_complete, priority, completed_date, creation_date, projects, tags, due_date, task
 
 def map_priority(todo_priority):
     """Map todo.txt priority to Taskwarrior priority."""
@@ -113,7 +110,7 @@ def convert_and_insert_tasks(todo_file):
             line = line.strip()
             if not line:
                 continue
-            is_complete, completed_date, creation_date, priority, due_date, projects, tags, task, description = parse_todo_txt_line(line)
+            is_complete,  priority, completed_date, creation_date, projects, tags, due_date, task = parse_todo_txt_line(line)
             full_description = task
             if full_description in existing_tasks:
                 task_id, task_status, task_data = existing_tasks[full_description]

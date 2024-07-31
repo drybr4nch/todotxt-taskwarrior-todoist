@@ -61,12 +61,12 @@ def main():
             stringParts.append('x')
             stringParts.append(parse(entry['modified']).strftime("%Y-%m-%d"))
 
-        # Handle task creation date
-        stringParts.append(parse(entry['entry']).strftime("%Y-%m-%d"))
-
         # Handle priority
         if 'priority' in entry:
             stringParts.append(priorities.get(entry['priority']))
+
+        # Handle task creation date
+        stringParts.append(parse(entry['entry']).strftime("%Y-%m-%d"))
 
         # Handle description
         description = entry['description']

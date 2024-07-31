@@ -39,7 +39,7 @@ def load_from_todo_txt(todo_file):
             line = line.strip()
             if not line:
                 continue
-            is_complete, completed_date, creation_date, priority, due_date, projects, tags, task, description = parse_todo_txt_line(line)
+            is_complete, completed_date, creation_date, priority, due_date, projects, tags, task = parse_todo_txt_line(line)
             task_data = {
                 'description': task,
                 'is_completed': is_complete,
@@ -165,9 +165,9 @@ def update_todo_txt(done_tasks):
     with open('/mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/todo.txt', 'w') as tf:
         for line in lines:
             line_stripped = line.strip()
-            is_complete, _, _, _, _, _, _, task, _ = parse_todo_txt_line(line_stripped)
+            is_complete, priority, completion_date, creation_date, projects, tags, due_date, task = parse_todo_txt_line(line_stripped)
             if any(task.strip() == done_task.strip() for done_task in done_tasks):
-                tf.write(f"x {date.today()} {line_stripped}\n")
+                tf.write(f"x {priority} {date.today()} {creation_date} {projects} {tags} {due_date} {task}\n")
             else:
                 tf.write(f"{line_stripped}\n")
 
