@@ -3,7 +3,7 @@
 (B) FP final +college @lj due:2024-08-27
 (B) ANA final +college @lj due:2024-09-03
 (B) IEPS final +college @lj due:2024-09-04
-(B) SMRPO final +college @lj due:2024-09-05 
+(B) SMRPO final +college @lj due:2024-09-05
 read Neuromancer +reading
 read Snow Crash +reading
 read The Diamond Age: Or, A Young Ladys Illustrated Primer +reading

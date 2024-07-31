@@ -25,6 +25,7 @@ Please share if you find this useful, feel free to recommend me a calendar app t
 You can reach me at tl9740@student.uni-lj.si if you have anything to say.
 
 # To Do
-- [ ] add support to mark tasks as done from one application across all 4
-- [ ] figure out a way to integrate this with some kind of calendar
-- [ ] possibly code a ms todo obsidian plugin
+- [x] add support to mark tasks as done from one application across all 3
+- [x] figure out a way to integrate this with some kind of calendar
+- [ ] leverage existing code to make some sort of auto sync service
+- [ ] clean up, refactor, rename, etc.
