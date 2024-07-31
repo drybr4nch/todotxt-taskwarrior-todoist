@@ -114,7 +114,7 @@ def convert_and_insert_tasks(todo_file):
             if not line:
                 continue
             is_complete, completed_date, creation_date, priority, due_date, projects, tags, task, description = parse_todo_txt_line(line)
-            full_description = f"{task} -- {description}" if description else task
+            full_description = task
             if full_description in existing_tasks:
                 task_id, task_status, task_data = existing_tasks[full_description]
                 if is_complete and task_status != 'completed':

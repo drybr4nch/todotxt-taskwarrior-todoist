@@ -5,9 +5,13 @@ import subprocess
 import json
 from datetime import datetime
 import pytz
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Todoist Authentication
-TODOIST_API_TOKEN = '<your_api_key'
+TODOIST_API_TOKEN = os.getenv('TODOIST_API_TOKEN')
 
 # Priority mapping function
 def map_priority(taskwarrior_priority):
@@ -82,31 +86,6 @@ def fetch_tasks():
             url = response.links.get('next', {}).get('url', None)
         except requests.exceptions.RequestException as e:
             print(f"Error fetching tasks from Todoist: {e}")
-            break
-    
-    return tasks
-
-def fetch_completed_tasks():
-    headers = {
-        'Authorization': f'Bearer {TODOIST_API_TOKEN}',
-        'Content-Type': 'application/json'
-    }
-    tasks = []
-    url = 'https://api.todoist.com/sync/v8/completed/get_all'
-    
-    while url:
-        try:
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            data = response.json()
-            tasks.extend(data.get('items', []))
-            
-            # Check for next page
-            url = response.json().get('next_cursor', None)
-            if url:
-                url = f'https://api.todoist.com/sync/v8/completed/get_all?cursor={url}'
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching completed tasks from Todoist: {e}")
             break
     
     return tasks
@@ -202,28 +181,6 @@ def add_task_to_todoist(task, project_mapping, label_mapping):
     except requests.exceptions.RequestException as e:
         print(f"Error adding task to Todoist: {e}")
 
-# Mark a task as completed in Taskwarrior
-def mark_task_as_completed_in_taskwarrior(task):
-    command = ['task', f'{task["description"]}', 'done']
-    try:
-        subprocess.run(command, capture_output=True, text=True, check=True)
-        print(f"Marked task {task['description']} as completed in Taskwarrior")
-    except subprocess.CalledProcessError as e:
-        print(f"Error marking task {task['description']} as completed in Taskwarrior: {e}")
-
-# Mark a task as completed in Todoist
-def mark_task_as_completed_in_todoist(task_id):
-    headers = {
-        'Authorization': f'Bearer {TODOIST_API_TOKEN}',
-        'Content-Type': 'application/json'
-    }
-    try:
-        response = requests.post(f'https://api.todoist.com/rest/v2/tasks/{task_id}/close', headers=headers)
-        response.raise_for_status()
-        print(f"Marked task {task_id} as completed in Todoist")
-    except requests.exceptions.RequestException as e:
-        print(f"Error marking task {task_id} as completed in Todoist: {e}")
-
 # Sync tasks between Todoist and Taskwarrior
 def sync_tasks(todoist_tasks, taskwarrior_tasks):
     name_to_id, id_to_name = fetch_projects()
@@ -237,13 +194,9 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
         return
 
     todoist_task_descriptions = {task['content'] for task in todoist_tasks}
-    completed_task_descriptions = {task['content'] for task in fetch_completed_tasks()}
-
-    todoist_task_ids = {task['id']: task['content'] for task in todoist_tasks}
-    completed_todoist_task_ids = {task['id'] for task in fetch_completed_tasks()}
 
     for task in taskwarrior_tasks:
-        if task['description'] not in todoist_task_descriptions and task['description'] not in completed_task_descriptions:
+        if task['description'] not in todoist_task_descriptions:
             try:
                 due_date, due_datetime = convert_due_date(task.get('due'))
 
@@ -254,7 +207,6 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
                 todoist_priority = map_priority(task_priority)
 
                 task_tags = task.get('tags', [])
-                todoist_labels = [label for label in task_tags if label in label_mapping]
 
                 data = {
                     'content': task['description'],
@@ -262,7 +214,7 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
                     'due_date': due_date,
                     'due_datetime': due_datetime,
                     'priority': todoist_priority,
-                    'labels': [label_mapping[label] for label in todoist_labels]
+                    'labels': task_tags
                 }
                 headers = {
                     'Authorization': f'Bearer {TODOIST_API_TOKEN}',
@@ -286,19 +238,6 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
                 'tags': [label for label in task.get('labels', []) if label in label_mapping]
             }
             add_task_to_taskwarrior(task_data)
-
-    # Handle completed tasks
-    completed_tasks_in_taskwarrior = [task for task in taskwarrior_tasks if task.get('status') == 'completed']
-    completed_task_descriptions_in_taskwarrior = {task['description'] for task in completed_tasks_in_taskwarrior}
-
-    for task in todoist_tasks:
-        if task['content'] in completed_task_descriptions_in_taskwarrior and task['id'] not in completed_todoist_task_ids:
-            mark_task_as_completed_in_todoist(task['id'])
-
-    for task in completed_tasks_in_taskwarrior:
-        if task['description'] not in todoist_task_descriptions:
-            # Mark task as completed in Taskwarrior
-            mark_task_as_completed_in_taskwarrior({'description': task['description']})
 
 # Main function
 def main():
