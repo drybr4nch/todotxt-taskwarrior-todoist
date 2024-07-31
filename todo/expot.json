@@ -1,0 +1,8 @@
+[
+{"id":1,"description":"make ANA zapiski","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"H","project":"college","status":"pending","uuid":"5099cfe7-b2b1-4a34-98fe-87ed6d5fada9","urgency":7},
+{"id":2,"description":"make FP zapiski","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"H","project":"college","status":"pending","uuid":"21be0e3c-c1dd-495c-8dcf-40adedd3e786","urgency":7},
+{"id":3,"description":"ANA final","due":"20240901T220000Z","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"M","project":"college","status":"pending","uuid":"643057b1-e7c3-47c4-b120-71fcdd2d9c06","tags":["lj"],"urgency":8.1},
+{"id":4,"description":"FP final","due":"20240825T220000Z","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"M","project":"college","status":"pending","uuid":"687fc9bc-41db-414c-abdc-50e6edded25b","tags":["lj"],"urgency":8.1},
+{"id":5,"description":"IEPS final","due":"20240902T220000Z","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"M","project":"college","status":"pending","uuid":"418ffd4c-dff0-43fa-ac04-05b659d93632","tags":["lj"],"urgency":8.1},
+{"id":6,"description":"SMRPO final","due":"20240903T220000Z","entry":"20240731T181849Z","modified":"20240731T181849Z","priority":"M","project":"college","status":"pending","uuid":"cf0d10a5-6c1d-4563-be5f-804ba053b027","tags":["lj"],"urgency":8.1}
+]

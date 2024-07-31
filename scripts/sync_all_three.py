@@ -167,7 +167,8 @@ def update_todo_txt(done_tasks):
             line_stripped = line.strip()
             is_complete, priority, completion_date, creation_date, projects, tags, due_date, task = parse_todo_txt_line(line_stripped)
             if any(task.strip() == done_task.strip() for done_task in done_tasks):
-                tf.write(f"x {priority} {date.today()} {creation_date} {projects} {tags} {due_date} {task}\n")
+                tags_str = ' '.join(f"@{tag} " for tag in tags)
+                tf.write(f"x ({priority}) {date.today()} {creation_date} {task} +{projects[0]} {tags_str} {due_date} \n")
             else:
                 tf.write(f"{line_stripped}\n")
 
