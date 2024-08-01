@@ -8,6 +8,7 @@ PRIORITY_MAP = {chr(i): 'L' for i in range(ord('D'), ord('Z') + 1)}
 PRIORITY_MAP.update({'A': 'H', 'B': 'M', 'C': 'L'})
 
 def parse_todo_txt_line(line):
+    """Parse a single line from a todo.txt file."""
     is_complete = line.startswith('x ')
     if is_complete:
         line = line[2:]
@@ -16,7 +17,7 @@ def parse_todo_txt_line(line):
         line = re.sub(r'\d{4}-\d{2}-\d{2}', '', line, 1).strip()
     else:
         completed_date = ''
-
+    
     priority_match = re.match(r'\(([A-Z])\)', line)
     priority = priority_match.group(1) if priority_match else ''
     line = line[priority_match.end():].strip() if priority_match else line

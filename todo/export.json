@@ -1,8 +1,6 @@
 [
-{"id":1,"description":"make ana zapiski","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"H","project":"college","status":"pending","uuid":"72511251-6f7e-4983-a1aa-869ea781fb66","urgency":7},
-{"id":2,"description":"make fp zapiski","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"H","project":"college","status":"pending","uuid":"f874ef3f-9c30-490b-8117-18efcc395be2","urgency":7},
-{"id":3,"description":"ana final","due":"20240901T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"09367849-2745-4070-b67c-bf3c746977ac","urgency":7.3},
-{"id":4,"description":"fp final","due":"20240825T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"856ce018-9760-46c7-83ce-0e3b57cae3a2","urgency":7.3},
-{"id":5,"description":"ieps final","due":"20240902T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"fec40b71-bd21-4fcc-baf1-dbc521f91d8e","urgency":7.3},
-{"id":6,"description":"smrpo final","due":"20240903T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"171f5770-3ab9-4f1a-9bb7-e946a20ff7fd","urgency":7.3}
+{"id":1,"description":"ana final","due":"20240825T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"8c602647-92e3-41e4-a4bb-2bf1b9c05ad5","urgency":9.4},
+{"id":2,"description":"fp final","due":"20240901T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"9fe53ca3-f7fe-4f92-8c1f-4d10c85def2c","urgency":9.4},
+{"id":3,"description":"ieps final","due":"20240902T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"cf9c0648-edc1-4460-a8e4-935489e21a32","urgency":9.4},
+{"id":4,"description":"smrpo final","due":"20240903T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"109a141b-d56d-4895-a6b0-c39535717f8e","urgency":9.4}
 ]

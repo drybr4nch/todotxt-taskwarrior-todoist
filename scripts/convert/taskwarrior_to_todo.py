@@ -47,6 +47,7 @@ def main():
     for entry in data:
         stringParts = []
         description = entry.get('description', '').strip()
+        print(entry)
 
         if entry['status'] == 'completed':
             if args.skipCompleted:
@@ -98,11 +99,6 @@ def main():
     elif len(archive) > 0:
         with open(args.output, 'a') as file:
             file.write("\n".join(archive) + "\n")
-
-    if deleted_tasks:
-        with open(args.output, 'a') as file:
-            for task in deleted_tasks:
-                file.write(f"x {task}\n")
 
     logger.debug('Done')
 

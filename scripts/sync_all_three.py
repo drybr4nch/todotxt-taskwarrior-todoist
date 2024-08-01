@@ -156,8 +156,8 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
     updated_tasks = []
     processed_tasks = set()
     
-    done_tasks_set = set(task['description'] for task in done_tasks)
-    deleted_tasks_set = set(task['description'] for task in deleted_tasks)
+    done_tasks_set = set(task['description'].strip() for task in done_tasks if is_task_completed(task))
+    deleted_tasks_set = set(task['description'].strip() for task in deleted_tasks)
 
     for line in lines:
         line_stripped = line.strip()
@@ -165,6 +165,12 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
             continue
 
         is_complete = line_stripped.startswith('x ')
+        task_priority = line_stripped[:2]
+        created_date = ""
+        if is_complete:
+            created_date = line_stripped.split(" ")[3]
+        else:
+            created_date = line_stripped.split(" ")[1]
         task_description = line_stripped[2:].strip() if is_complete else line_stripped
 
         if task_description in processed_tasks or task_description in deleted_tasks_set:
@@ -173,11 +179,11 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
         if task_description in done_tasks_set:
             if not is_complete:
                 completion_date = datetime.datetime.now().strftime("%Y-%m-%d")
-                updated_tasks.append(f"x {completion_date} {task_description}\n")
+                updated_tasks.append(f"x {task_priority} {completion_date} {created_date} {task_description}\n")
             else:
                 updated_tasks.append(line_stripped + '\n')
             done_tasks_set.remove(task_description)
-        else:
+        elif task_description not in done_tasks_set and task_description not in deleted_tasks_set:
             updated_tasks.append(line_stripped + '\n')
 
         processed_tasks.add(task_description)
@@ -186,6 +192,10 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
         file.writelines(updated_tasks)
 
     print(f"Updated {len(updated_tasks)} tasks in Todo.txt.")
+
+def is_task_completed(task):
+    """Check if a task is marked as completed."""
+    return task.get('status', '') == 'completed'
 
 def update_taskwarrior(tasks):
     for task in tasks:
