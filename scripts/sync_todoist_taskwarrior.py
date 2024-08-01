@@ -10,29 +10,26 @@ import os
 
 load_dotenv()
 
-# Todoist Authentication
 TODOIST_API_TOKEN = os.getenv('TODOIST_API_TOKEN')
 
-# Priority mapping function
 def map_priority(taskwarrior_priority):
     priority_map = {
-        'H': 4,  # High priority
-        'M': 3,  # Medium priority
-        'L': 2,  # Low priority
-        None: 1  # No priority
+        'H': 4,
+        'M': 3,
+        'L': 2,
+        None: 1
     }
     return priority_map.get(taskwarrior_priority, 1)
 
 def priority_map(todoist_priority):
     map_priority = {
-        4: 'H',  # High priority
-        3: 'M',  # Medium priority
-        2: 'L',  # Low priority
-        1: None  # No priority
+        4: 'H',
+        3: 'M',
+        2: 'L',
+        1: None
     }
     return map_priority.get(todoist_priority, None)
 
-# Fetch projects from Todoist and create a mapping
 def fetch_projects():
     headers = {
         'Authorization': f'Bearer {TODOIST_API_TOKEN}',
@@ -49,7 +46,6 @@ def fetch_projects():
         print(f"Error fetching projects from Todoist: {e}")
         return {}, {}
 
-# Fetch labels from Todoist
 def fetch_labels():
     headers = {
         'Authorization': f'Bearer {TODOIST_API_TOKEN}',
@@ -66,7 +62,6 @@ def fetch_labels():
         print(f"Error fetching labels from Todoist: {e}")
         return {}, {}
 
-# Fetch tasks from Todoist
 def fetch_tasks():
     headers = {
         'Authorization': f'Bearer {TODOIST_API_TOKEN}',
@@ -82,7 +77,6 @@ def fetch_tasks():
             data = response.json()
             tasks.extend(data)
             
-            # Check for next page
             url = response.links.get('next', {}).get('url', None)
         except requests.exceptions.RequestException as e:
             print(f"Error fetching tasks from Todoist: {e}")
@@ -90,7 +84,6 @@ def fetch_tasks():
     
     return tasks
 
-# Fetch tasks from Taskwarrior
 def fetch_taskwarrior_tasks():
     try:
         result = subprocess.run(['task', 'export'], capture_output=True, text=True)
@@ -100,7 +93,6 @@ def fetch_taskwarrior_tasks():
         print(f"Error fetching Taskwarrior tasks: {e}")
         return []
 
-# Convert Taskwarrior due date to Todoist formats
 def convert_due_date(due_date_str):
     if due_date_str is None:
         return None, None
@@ -108,7 +100,7 @@ def convert_due_date(due_date_str):
     try:
         if len(due_date_str) == 16 and due_date_str[8] == 'T' and due_date_str[-1] == 'Z':
             parsed_date = datetime.strptime(due_date_str, '%Y%m%dT%H%M%SZ')
-            parsed_date = pytz.utc.localize(parsed_date)  # Localize to UTC
+            parsed_date = pytz.utc.localize(parsed_date)
 
             ljubljana_tz = pytz.timezone('Europe/Ljubljana')
             parsed_date = parsed_date.astimezone(ljubljana_tz)
@@ -122,7 +114,6 @@ def convert_due_date(due_date_str):
     except ValueError:
         return None, None
 
-# Add a task to Taskwarrior
 def add_task_to_taskwarrior(task):
     command = ['task', 'add', task['description']]
     
@@ -149,7 +140,6 @@ def add_task_to_taskwarrior(task):
     except subprocess.CalledProcessError as e:
         print(f"Error adding task to Taskwarrior: {e}")
 
-# Add a task to Todoist
 def add_task_to_todoist(task, project_mapping, label_mapping):
     headers = {
         'Authorization': f'Bearer {TODOIST_API_TOKEN}',
@@ -181,7 +171,6 @@ def add_task_to_todoist(task, project_mapping, label_mapping):
     except requests.exceptions.RequestException as e:
         print(f"Error adding task to Todoist: {e}")
 
-# Sync tasks between Todoist and Taskwarrior
 def sync_tasks(todoist_tasks, taskwarrior_tasks):
     name_to_id, id_to_name = fetch_projects()
     if not name_to_id:
@@ -239,7 +228,6 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
             }
             add_task_to_taskwarrior(task_data)
 
-# Main function
 def main():
     todoist_tasks = fetch_tasks()
     taskwarrior_tasks = fetch_taskwarrior_tasks()

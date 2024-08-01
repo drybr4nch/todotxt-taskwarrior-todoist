@@ -1,20 +1,13 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
 import json
 import argparse
-import datetime
 import logging
-import re
-from pprint import pprint
 from dateutil.parser import parse
+import os
 
 def main():
-
     logger = logging.getLogger()
     handler = logging.StreamHandler()
-    formatter = logging.Formatter(
-            '%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+    formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
@@ -35,99 +28,89 @@ def main():
     logger.debug('Starting conversion')
 
     try:
-        json_data = open(args.input).read()
+        with open(args.input, 'r') as f:
+            data = json.load(f)
     except Exception as e:
-        logger.error(f'Could not open input file: {e}')
+        logger.error(f'Could not open or parse input file: {e}')
         return
 
-    try:
-        data = json.loads(json_data)
-    except Exception as e:
-        logger.error(f'Invalid JSON file: {e}')
-        return
-
-    logger.debug('Found {num} entries'.format(num=len(data)))
+    logger.debug(f'Found {len(data)} entries')
 
     result = []
     archive = []
 
+    # Track previously existing tasks
+    previous_tasks = load_previous_tasks(args.output)
+    current_tasks = {entry['description'].strip() for entry in data if 'description' in entry}
+    deleted_tasks = previous_tasks - current_tasks
+
     for entry in data:
         stringParts = []
+        description = entry.get('description', '').strip()
 
-        # Handle completed tasks
         if entry['status'] == 'completed':
             if args.skipCompleted:
                 continue
             stringParts.append('x')
-            stringParts.append(parse(entry['modified']).strftime("%Y-%m-%d"))
+            stringParts.append(parse(entry.get('end', entry['modified'])).strftime('%Y-%m-%d'))
 
-        # Handle priority
         if 'priority' in entry:
-            stringParts.append(priorities.get(entry['priority']))
+            stringParts.append(priorities.get(entry['priority'], '(D)'))
 
-        # Handle task creation date
-        stringParts.append(parse(entry['entry']).strftime("%Y-%m-%d"))
-
-        # Handle description
-        description = entry['description']
-
-        # Insert description in the correct position
         stringParts.append(description)
 
         # Handle projects
         if 'project' in entry:
             projectName = entry['project']
-            pattern = r"\b" + projectName + r"\b"
-            if re.search(pattern, description, flags=re.IGNORECASE):
-                description = re.sub(pattern, '+' + projectName, description)
-            else:
-                stringParts.append('+' + projectName)
+            stringParts.append('+' + projectName)
 
         # Handle tags
         if 'tags' in entry:
             for tag in entry['tags']:
-                pattern = r"\b" + tag + r"\b"
-                if re.search(pattern, description, flags=re.IGNORECASE):
-                    description = re.sub(pattern, '@' + tag, description)
-                else:
-                    stringParts.append('@' + tag)
+                if f'@{tag}' not in description:
+                    description += f' @{tag}'
 
         # Handle due dates
         if 'due' in entry:
             stringParts.append('due:' + parse(entry['due']).strftime("%Y-%m-%d"))
 
-        # Remove the old description position
-        stringParts.remove(description)
-        # Add the updated description after handling projects and tags
-        stringParts.insert(2, description)
 
-        # Format the final string
-        string = u' '.join(stringParts)
+        # Join parts ensuring no double spaces or extra characters
+        string = ' '.join(filter(None, stringParts)).strip()
+        if not string:
+            continue
 
-        # Append to result or archive
         if entry['status'] == 'completed' and args.archive:
             archive.append(string)
         else:
             result.append(string)
 
-    # Sorting results if not skipped
     if not args.noSort:
         result = sorted(result)
         archive = sorted(archive)
 
-    # Write to output file
     with open(args.output, 'w') as file:
-        file.write("\n".join(result))
+        file.write("\n".join(result) + "\n")
 
-    # Write to archive file if specified, otherwise append to output file
     if args.archive:
         with open(args.archive, 'w') as file:
-            file.write("\n".join(archive))
+            file.write("\n".join(archive) + "\n")
     elif len(archive) > 0:
         with open(args.output, 'a') as file:
-            file.write("\n".join(archive))
+            file.write("\n".join(archive) + "\n")
+
+    if deleted_tasks:
+        with open(args.output, 'a') as file:
+            for task in deleted_tasks:
+                file.write(f"x {task}\n")
 
     logger.debug('Done')
+
+def load_previous_tasks(output_file):
+    if os.path.exists(output_file):
+        with open(output_file, 'r') as file:
+            return {line.strip().split(' ', 1)[-1] for line in file.readlines() if line.strip()}
+    return set()
 
 if __name__ == '__main__':
     main()
