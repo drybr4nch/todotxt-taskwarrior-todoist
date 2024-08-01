@@ -156,8 +156,20 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
     updated_tasks = []
     processed_tasks = set()
     
-    done_tasks_set = set(task['description'].strip() for task in done_tasks if is_task_completed(task))
-    deleted_tasks_set = set(task['description'].strip() for task in deleted_tasks)
+     # Ensure done_tasks and deleted_tasks are lists of dictionaries with 'description' keys
+    done_tasks_set = set()
+    for task in done_tasks:
+        if isinstance(task, dict) and 'description' in task:
+            done_tasks_set.add(task['description'].strip())
+        else:
+            print(f"Warning: Expected dict in done_tasks, got {type(task)}")
+
+    deleted_tasks_set = set()
+    for task in deleted_tasks:
+        if isinstance(task, dict) and 'description' in task:
+            deleted_tasks_set.add(task['description'].strip())
+        else:
+            print(f"Warning: Expected dict in deleted_tasks, got {type(task)}")
 
     for line in lines:
         line_stripped = line.strip()

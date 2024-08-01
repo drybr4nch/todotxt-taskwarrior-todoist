@@ -1,6 +1,6 @@
 [
-{"id":1,"description":"ana final","due":"20240825T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"8c602647-92e3-41e4-a4bb-2bf1b9c05ad5","urgency":9.4},
-{"id":2,"description":"fp final","due":"20240901T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"9fe53ca3-f7fe-4f92-8c1f-4d10c85def2c","urgency":9.4},
-{"id":3,"description":"ieps final","due":"20240902T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"cf9c0648-edc1-4460-a8e4-935489e21a32","urgency":9.4},
-{"id":4,"description":"smrpo final","due":"20240903T220000Z","entry":"20240801T005616Z","modified":"20240801T005616Z","priority":"H","project":"college","status":"pending","uuid":"109a141b-d56d-4895-a6b0-c39535717f8e","urgency":9.4}
+{"id":1,"description":"ana final","due":"20240823T220000Z","entry":"20240801T100621Z","modified":"20240801T100621Z","priority":"H","project":"college","status":"pending","uuid":"d6394236-a8d7-4828-a81f-f11698ecf0d1","urgency":9.4},
+{"id":2,"description":"fp final","due":"20240830T220000Z","entry":"20240801T100621Z","modified":"20240801T100621Z","priority":"H","project":"college","status":"pending","uuid":"06a76d69-9d45-4712-87ba-6334a1291b74","urgency":9.4},
+{"id":3,"description":"ieps final","due":"20240831T220000Z","entry":"20240801T100621Z","modified":"20240801T100621Z","priority":"H","project":"college","status":"pending","uuid":"50407810-2bce-4f7b-8f20-f55067b38bff","urgency":9.4},
+{"id":4,"description":"smrpo final","due":"20240901T220000Z","entry":"20240801T100621Z","modified":"20240801T100621Z","priority":"H","project":"college","status":"pending","uuid":"f94afbba-d66b-4ab1-95f9-f50a965ca7b7","urgency":9.4}
 ]

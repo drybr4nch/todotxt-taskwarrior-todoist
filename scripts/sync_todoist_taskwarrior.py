@@ -185,6 +185,9 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
     todoist_task_descriptions = {task['content'] for task in todoist_tasks}
 
     for task in taskwarrior_tasks:
+        if task['status'] == 'completed':
+            continue  # Skip completed tasks
+
         if task['description'] not in todoist_task_descriptions:
             try:
                 due_date, due_datetime = convert_due_date(task.get('due'))
