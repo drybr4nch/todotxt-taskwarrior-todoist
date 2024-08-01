@@ -25,5 +25,5 @@ Please share if you find this useful, feel free to recommend me a calendar app t
 You can reach me at tl9740@student.uni-lj.si if you have anything to say.
 
 # To Do
-- [ ] lot's of testing
+- [ ] lots of testing
 - [ ] improve running time

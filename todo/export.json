@@ -1,8 +1,8 @@
 [
-{"id":1,"description":"make ana zapiski","entry":"20240731T235251Z","modified":"20240731T235251Z","priority":"H","project":"college","status":"pending","uuid":"7ad74945-29cc-44ea-9895-6869ac644184","urgency":7},
-{"id":2,"description":"make fp zapiski","entry":"20240731T235251Z","modified":"20240731T235251Z","priority":"H","project":"college","status":"pending","uuid":"5467b8f9-70be-418d-a6bd-db0a1d52ee23","urgency":7},
-{"id":3,"description":"fp final","due":"20240826T220000Z","entry":"20240731T235251Z","modified":"20240731T235318Z","priority":"M","project":"college","status":"pending","uuid":"7a4ae485-93ed-4f6f-9164-aa71370aa749","tags":["lj"],"urgency":8.1},
-{"id":4,"description":"ana final","due":"20240902T220000Z","entry":"20240731T235251Z","modified":"20240731T235318Z","priority":"M","project":"college","status":"pending","uuid":"1673dbf7-8669-4dda-bd7d-65e648891dd6","tags":["lj"],"urgency":8.1},
-{"id":5,"description":"ieps final","due":"20240903T220000Z","entry":"20240731T235251Z","modified":"20240731T235318Z","priority":"M","project":"college","status":"pending","uuid":"94228e83-1381-460e-b9b7-71d7cec09653","tags":["lj"],"urgency":8.1},
-{"id":6,"description":"smrpo final","due":"20240904T220000Z","entry":"20240731T235251Z","modified":"20240731T235318Z","priority":"M","project":"college","status":"pending","uuid":"621c503a-44d7-407c-8bfc-b650bfc6e05d","tags":["lj"],"urgency":8.1}
+{"id":1,"description":"make ana zapiski","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"H","project":"college","status":"pending","uuid":"72511251-6f7e-4983-a1aa-869ea781fb66","urgency":7},
+{"id":2,"description":"make fp zapiski","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"H","project":"college","status":"pending","uuid":"f874ef3f-9c30-490b-8117-18efcc395be2","urgency":7},
+{"id":3,"description":"ana final","due":"20240901T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"09367849-2745-4070-b67c-bf3c746977ac","urgency":7.3},
+{"id":4,"description":"fp final","due":"20240825T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"856ce018-9760-46c7-83ce-0e3b57cae3a2","urgency":7.3},
+{"id":5,"description":"ieps final","due":"20240902T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"fec40b71-bd21-4fcc-baf1-dbc521f91d8e","urgency":7.3},
+{"id":6,"description":"smrpo final","due":"20240903T220000Z","entry":"20240801T000252Z","modified":"20240801T000252Z","priority":"M","project":"college","status":"pending","uuid":"171f5770-3ab9-4f1a-9bb7-e946a20ff7fd","urgency":7.3}
 ]

@@ -1,12 +1,12 @@
 (A) make ana zapiski +college
 (A) make fp zapiski +college
-(B) ana final +college due:2024-09-02
-(B) fp final +college due:2024-08-26
-(B) ieps final +college due:2024-09-03
-(B) smrpo final +college due:2024-09-04
+(B) ana final +college due:2024-09-01
+(B) fp final +college due:2024-08-25
+(B) ieps final +college due:2024-09-02
+(B) smrpo final +college due:2024-09-03
+x ieps final +college due:2024-09-03
+x smrpo final +college due:2024-09-04
 x make ana zapiski +college
-x ana final +college @lj due:2024-09-03
+x ana final +college due:2024-09-02
+x fp final +college due:2024-08-26
 x make fp zapiski +college
-x fp final +college @lj due:2024-08-27
-x ieps final +college @lj due:2024-09-04
-x smrpo final +college @lj due:2024-09-05

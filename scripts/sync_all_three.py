@@ -149,6 +149,7 @@ def detect_deleted_tasks(all_tasks):
     return list(deleted_tasks)
 
 def update_todo_txt(done_tasks, deleted_tasks, todo_file):
+    """Update Todo.txt with completed and deleted tasks."""
     with open(todo_file, 'r') as file:
         lines = file.readlines()
 
@@ -172,7 +173,7 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
         if task_description in done_tasks_set:
             if not is_complete:
                 completion_date = datetime.datetime.now().strftime("%Y-%m-%d")
-                updated_tasks.append(f"x {completion_date} {line_stripped}\n")
+                updated_tasks.append(f"x {completion_date} {task_description}\n")
             else:
                 updated_tasks.append(line_stripped + '\n')
             done_tasks_set.remove(task_description)
