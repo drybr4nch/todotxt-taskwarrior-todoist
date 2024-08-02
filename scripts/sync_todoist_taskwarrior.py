@@ -203,7 +203,7 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
                 data = {
                     'content': task['description'],
                     'project_id': project_id,
-                    'due_date': due_date,
+                    'due_date': due_date.split('T')[0],
                     'due_datetime': due_datetime,
                     'priority': todoist_priority,
                     'labels': task_tags

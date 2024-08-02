@@ -1,8 +1,11 @@
+#!/usr/bin/python3
+
 import json
 import argparse
 import logging
 from dateutil.parser import parse
 import os
+from datetime import datetime, timedelta
 
 def main():
     logger = logging.getLogger()
@@ -73,7 +76,7 @@ def main():
 
         # Handle due dates
         if 'due' in entry:
-            stringParts.append('due:' + parse(entry['due']).strftime("%Y-%m-%d"))
+            stringParts.append('due:' + datetime.strftime(parse(entry['due']) + timedelta(days=1), "%Y-%m-%d"))
 
 
         # Join parts ensuring no double spaces or extra characters
