@@ -17,7 +17,7 @@ def map_priority(taskwarrior_priority):
         'H': 4,
         'M': 3,
         'L': 2,
-        None: 1
+        '' : 1
     }
     return priority_map.get(taskwarrior_priority, 1)
 
@@ -26,7 +26,7 @@ def priority_map(todoist_priority):
         4: 'H',
         3: 'M',
         2: 'L',
-        1: None
+        1: ''
     }
     return map_priority.get(todoist_priority, None)
 
@@ -203,7 +203,7 @@ def sync_tasks(todoist_tasks, taskwarrior_tasks):
                 data = {
                     'content': task['description'],
                     'project_id': project_id,
-                    'due_date': due_date.split('T')[0],
+                    'due_date': due_date,
                     'due_datetime': due_datetime,
                     'priority': todoist_priority,
                     'labels': task_tags

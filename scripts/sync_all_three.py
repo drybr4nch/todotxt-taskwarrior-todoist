@@ -212,11 +212,14 @@ def is_task_completed(task):
 def update_taskwarrior(tasks):
     for task in tasks:
         description = task['description']
-        try:
-            result = subprocess.run(['task', description, 'done'], check=True, text=True, capture_output=True)
-            print(f"Marked task '{description}' as completed in Taskwarrior")
-        except subprocess.CalledProcessError as e:
-            print(f"Error marking task '{description}' as completed in Taskwarrior: {e}")
+        if task['is_completed']:
+            try:
+                result = subprocess.run(['task', description, 'done'], check=True, text=True, capture_output=True)
+                print(f"Marked task '{description}' as completed in Taskwarrior")
+            except subprocess.CalledProcessError as e:
+                print(f"Error marking task '{description}' as completed in Taskwarrior: {e}")
+        else:
+            return
 
 def update_todoist(done_tasks, deleted_tasks):
     headers = {

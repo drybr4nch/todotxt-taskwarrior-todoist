@@ -40,7 +40,7 @@ def parse_todo_txt_line(line):
     return is_complete, priority, completed_date, creation_date, projects, tags, due_date, task
 
 def map_priority(priority):
-    return PRIORITY_MAP.get(priority, 'L')
+    return PRIORITY_MAP.get(priority, '')
 
 def get_existing_tasks():
     cmd = ['task', 'export']

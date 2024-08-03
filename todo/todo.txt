@@ -1,4 +1,25 @@
-(A) ana final +college due:2024-08-23
-(A) fp final +college due:2024-08-30
-(A) ieps final +college due:2024-08-31
-(A) smrpo final +college due:2024-09-01
+(A) ana final +college due:2024-09-03
+(A) fp final +college due:2024-08-27
+(A) ieps final +college due:2024-09-04
+(A) smrpo final +college due:2024-09-05
+cancel amnesty international subscription +chess
+find job +work
+read algorithms (robert sedgewick and kevin wayne) +reading
+read altered carbon +reading
+read clean code a handbook of agile software craftsmanship +reading
+read code: the hidden language of computer hardware and software +reading
+read cryptonomicon +reading
+read daemon +reading
+read deep learning +reading
+read design patterns: elements of reusable object-oriented software +reading
+read introduction to the theory of computation +reading
+read neuromancer +reading
+read permutation city +reading
+read player piano +reading
+read snow crash +reading
+read structure and interpretation of computer programs +reading
+read the diamond age: or, a young ladys illustrated primer +reading
+read the hitchhikers guide to the galaxy +reading
+read the mythical man-month: essays on software engineering +reading
+read the pragmatic programmer: your journey to mastery +reading
+read you dont know js (book series) +reading
