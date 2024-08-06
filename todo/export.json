@@ -1,6 +1,20 @@
 [
-{"id":1,"description":"ana final","due":"20240902T220000Z","entry":"20240804T124607Z","modified":"20240804T124607Z","priority":"H","project":"college","status":"pending","uuid":"157c96d6-71df-498c-8c97-50f32795c60b","urgency":9.4},
-{"id":2,"description":"fp final","due":"20240826T220000Z","entry":"20240804T124607Z","modified":"20240804T124607Z","priority":"H","project":"college","status":"pending","uuid":"dc659395-2e15-4863-91a1-97974de9091d","urgency":9.4},
-{"id":3,"description":"ieps final","due":"20240903T220000Z","entry":"20240804T124608Z","modified":"20240804T124608Z","priority":"H","project":"college","status":"pending","uuid":"ef98b0f4-8d06-4f13-966e-749c1ac93e4a","urgency":9.4},
-{"id":4,"description":"smrpo final","due":"20240904T220000Z","entry":"20240804T124608Z","modified":"20240804T124608Z","priority":"H","project":"college","status":"pending","uuid":"ab19af38-9232-4529-bb76-7c300313a38c","urgency":9.4}
+{"id":1,"description":"ana final","due":"20240902T220000Z","entry":"20240804T124607Z","modified":"20240804T124607Z","priority":"H","project":"college","status":"pending","uuid":"157c96d6-71df-498c-8c97-50f32795c60b","urgency":9.41096},
+{"id":2,"description":"fp final","due":"20240826T220000Z","entry":"20240804T124607Z","modified":"20240804T124607Z","priority":"H","project":"college","status":"pending","uuid":"dc659395-2e15-4863-91a1-97974de9091d","urgency":9.41096},
+{"id":3,"description":"ieps final","due":"20240903T220000Z","entry":"20240804T124608Z","modified":"20240804T124608Z","priority":"H","project":"college","status":"pending","uuid":"ef98b0f4-8d06-4f13-966e-749c1ac93e4a","urgency":9.41096},
+{"id":4,"description":"smrpo final","due":"20240904T220000Z","entry":"20240804T124608Z","modified":"20240804T124608Z","priority":"H","project":"college","status":"pending","uuid":"ab19af38-9232-4529-bb76-7c300313a38c","urgency":9.41096},
+{"id":5,"description":"the hitchhikers guide to the galaxy","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"16760e79-473d-455d-bfbf-8d91b911833b","urgency":1},
+{"id":6,"description":"the jargon file","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"22c8d89a-5c73-4eba-925f-5d7ffdd55620","urgency":1},
+{"id":7,"description":"the principia discordia","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"2c4aa030-ad56-43e2-b216-9be12ab62530","urgency":1},
+{"id":8,"description":"clean code a handbook of agile software craftsmanship","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"7e70f77b-19f1-44f5-9f87-1cad45bedd12","urgency":1},
+{"id":9,"description":"agile software development principles patterns and practices","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"e4d0301b-be03-4407-b1c1-4dcd6f592616","urgency":1},
+{"id":10,"description":"make CV","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"work","status":"pending","uuid":"79b39ab7-e64f-4742-8766-52a794846285","urgency":1},
+{"id":11,"description":"find job","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"work","status":"pending","uuid":"d1220b81-d62f-4549-933a-01a6a1401e34","urgency":1},
+{"id":12,"description":"write down FP slides","entry":"20240806T234928Z","modified":"20240806T234928Z","priority":"H","project":"college","status":"pending","uuid":"611e3448-2dab-489e-ba35-b1f6fbc2c9db","urgency":7},
+{"id":13,"description":"write down ANA slides","entry":"20240806T234928Z","modified":"20240806T234928Z","priority":"H","project":"college","status":"pending","uuid":"cc56b6b8-bc58-4d42-9899-0e5e108702fd","urgency":7},
+{"id":14,"description":"cancel amnesty international subscription","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"6c465301-22d2-4f10-ab3b-fa99ce38253e","urgency":1},
+{"id":15,"description":"obtain milk","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"5811e792-23aa-43b1-bb02-c0901c17d83d","urgency":1},
+{"id":16,"description":"research new phone","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"e9f503cb-89da-45aa-b6a7-057cdd782c72","urgency":1},
+{"id":17,"description":"back up all data","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"free","status":"pending","uuid":"b6ac65a9-a2e1-4399-a817-23befc3e41ad","urgency":1},
+{"id":18,"description":"make obsidian todoist plugin work on mobile","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"free","status":"pending","uuid":"d513fbb2-ab2b-4ab7-9b4c-1b97691290ac","urgency":1}
 ]

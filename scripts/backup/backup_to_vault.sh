@@ -1,0 +1,2 @@
+cp /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/todo.txt /mnt/c/Users/tadej/Documents/Projects/free/productivity/obsidian/vault/todo/todo.todotxt
+cp /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/done.txt /mnt/c/Users/tadej/Documents/Projects/free/productivity/obsidian/vault/todo/done.todotxt
