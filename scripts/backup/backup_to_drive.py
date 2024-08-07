@@ -2,30 +2,26 @@
 
 import os
 import shutil
-from tqdm import tqdm
 
 def copy_files_with_progress(src, dst):
     total_files = sum([len(files) for r, d, files in os.walk(src)])
-    with tqdm(total=total_files, unit='file', desc='Copying files') as pbar:
-        for root, dirs, files in os.walk(src):
-            for dir in dirs:
-                dest_dir = os.path.join(dst, os.path.relpath(os.path.join(root, dir), src))
-                if not os.path.exists(dest_dir):
-                    os.makedirs(dest_dir)
-            for file in files:
-                src_file = os.path.join(root, file)
-                dest_file = os.path.join(dst, os.path.relpath(src_file, src))
+    for root, dirs, files in os.walk(src):
+        for dir in dirs:
+            dest_dir = os.path.join(dst, os.path.relpath(os.path.join(root, dir), src))
+            if not os.path.exists(dest_dir):
+                os.makedirs(dest_dir)
+        for file in files:
+            src_file = os.path.join(root, file)
+            dest_file = os.path.join(dst, os.path.relpath(src_file, src))
 
-                if os.path.exists(dest_file):
-                    src_stat = os.stat(src_file)
-                    dest_stat = os.stat(dest_file)
-                    if src_stat.st_size == dest_stat.st_size and src_stat.st_mtime == dest_stat.st_mtime:
-                        # If the file already exists and is the same, skip copying
-                        pbar.update(1)
-                        continue
+            if os.path.exists(dest_file):
+                src_stat = os.stat(src_file)
+                dest_stat = os.stat(dest_file)
+                if src_stat.st_size == dest_stat.st_size and src_stat.st_mtime == dest_stat.st_mtime:
+                    # If the file already exists and is the same, skip copying
+                    continue
 
-                shutil.copy2(src_file, dest_file)
-                pbar.update(1)
+            shutil.copy2(src_file, dest_file)
 
 def delete_extra_files(src, dst):
     for root, dirs, files in os.walk(dst):

@@ -6,3 +6,6 @@ task export > /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/expor
 /usr/bin/python3 /mnt/c/Users/tadej/Documents/Projects/free/productivity/scripts/convert/taskwarrior_to_todo.py -i /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/export.json -o /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/todo.txt -a /mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/done.txt
 /usr/bin/python3 /mnt/c/Users/tadej/Documents/Projects/free/productivity/scripts/sync_all_three.py
 task sync
+/usr/bin/python3 /mnt/c/Users/tadej/Documents/Projects/free/productivity/scripts/backup/backup_to_vault.sh
+sudo /usr/bin/python3 /mnt/c/Users/tadej/Documents/Projects/free/productivity/scripts/backup/backup_to_drive.py
+/usr/bin/python3 /mnt/c/Users/tadej/Documents/Projects/free/productivity/scripts/backup/backup_obsidian.py

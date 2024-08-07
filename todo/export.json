@@ -8,13 +8,18 @@
 {"id":7,"description":"the principia discordia","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"2c4aa030-ad56-43e2-b216-9be12ab62530","urgency":1},
 {"id":8,"description":"clean code a handbook of agile software craftsmanship","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"7e70f77b-19f1-44f5-9f87-1cad45bedd12","urgency":1},
 {"id":9,"description":"agile software development principles patterns and practices","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"reading","status":"pending","uuid":"e4d0301b-be03-4407-b1c1-4dcd6f592616","urgency":1},
-{"id":10,"description":"make CV","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"work","status":"pending","uuid":"79b39ab7-e64f-4742-8766-52a794846285","urgency":1},
+{"id":10,"description":"make cv","entry":"20240806T234928Z","modified":"20240806T234929Z","project":"work","status":"pending","uuid":"79b39ab7-e64f-4742-8766-52a794846285","urgency":1},
 {"id":11,"description":"find job","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"work","status":"pending","uuid":"d1220b81-d62f-4549-933a-01a6a1401e34","urgency":1},
-{"id":12,"description":"write down FP slides","entry":"20240806T234928Z","modified":"20240806T234928Z","priority":"H","project":"college","status":"pending","uuid":"611e3448-2dab-489e-ba35-b1f6fbc2c9db","urgency":7},
-{"id":13,"description":"write down ANA slides","entry":"20240806T234928Z","modified":"20240806T234928Z","priority":"H","project":"college","status":"pending","uuid":"cc56b6b8-bc58-4d42-9899-0e5e108702fd","urgency":7},
+{"id":12,"description":"write down fp slides","entry":"20240806T234928Z","modified":"20240806T234929Z","priority":"H","project":"college","status":"pending","uuid":"611e3448-2dab-489e-ba35-b1f6fbc2c9db","urgency":7},
+{"id":13,"description":"write down ana slides","entry":"20240806T234928Z","modified":"20240806T234929Z","priority":"H","project":"college","status":"pending","uuid":"cc56b6b8-bc58-4d42-9899-0e5e108702fd","urgency":7},
 {"id":14,"description":"cancel amnesty international subscription","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"6c465301-22d2-4f10-ab3b-fa99ce38253e","urgency":1},
 {"id":15,"description":"obtain milk","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"5811e792-23aa-43b1-bb02-c0901c17d83d","urgency":1},
 {"id":16,"description":"research new phone","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"chess","status":"pending","uuid":"e9f503cb-89da-45aa-b6a7-057cdd782c72","urgency":1},
 {"id":17,"description":"back up all data","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"free","status":"pending","uuid":"b6ac65a9-a2e1-4399-a817-23befc3e41ad","urgency":1},
-{"id":18,"description":"make obsidian todoist plugin work on mobile","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"free","status":"pending","uuid":"d513fbb2-ab2b-4ab7-9b4c-1b97691290ac","urgency":1}
+{"id":18,"description":"make obsidian todoist plugin work on mobile","entry":"20240806T234928Z","modified":"20240806T234928Z","project":"free","status":"pending","uuid":"d513fbb2-ab2b-4ab7-9b4c-1b97691290ac","urgency":1},
+{"id":19,"description":"make cv","entry":"20240807T001223Z","modified":"20240807T001223Z","project":"work","status":"pending","uuid":"82391b92-deb5-4b37-ba19-5338a42aeb8c","urgency":1},
+{"id":20,"description":"write down fp slides","entry":"20240807T001223Z","modified":"20240807T001223Z","priority":"H","project":"college","status":"pending","uuid":"04e65716-3c09-460d-91a8-149193056e0a","urgency":7},
+{"id":21,"description":"write down ana slides","entry":"20240807T001223Z","modified":"20240807T001223Z","priority":"H","project":"college","status":"pending","uuid":"bea30e5c-859c-4805-abe3-902dde0c452d","urgency":7},
+{"id":22,"description":"write down fp slides","entry":"20240807T002243Z","modified":"20240807T002243Z","priority":"H","project":"college","status":"pending","uuid":"7ae31252-a0a6-455d-90c8-00bf38e1c6d5","urgency":7},
+{"id":23,"description":"write down ana slides","entry":"20240807T002243Z","modified":"20240807T002243Z","priority":"H","project":"college","status":"pending","uuid":"b58a60b3-d439-469d-bb2b-8b262e396120","urgency":7}
 ]

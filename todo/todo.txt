@@ -2,14 +2,14 @@
 (A) fp final +college due:2024-08-27
 (A) ieps final +college due:2024-09-04
 (A) smrpo final +college due:2024-09-05
-(A) write down ANA slides +college
-(A) write down FP slides +college
+(A) write down ana slides +college
+(A) write down fp slides +college
 agile software development principles patterns and practices +reading
 back up all data +free
 cancel amnesty international subscription +chess
 clean code a handbook of agile software craftsmanship +reading
 find job +work
-make CV +work
+make cv +work
 make obsidian todoist plugin work on mobile +free
 obtain milk +chess
 research new phone +chess
