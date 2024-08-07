@@ -5,12 +5,10 @@
 (A) write down ana slides +college
 (A) write down fp slides +college
 agile software development principles patterns and practices +reading
-back up all data +free
 cancel amnesty international subscription +chess
 clean code a handbook of agile software craftsmanship +reading
 find job +work
 make cv +work
-make obsidian todoist plugin work on mobile +free
 obtain milk +chess
 research new phone +chess
 the hitchhikers guide to the galaxy +reading
