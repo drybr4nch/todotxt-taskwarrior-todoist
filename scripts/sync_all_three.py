@@ -8,6 +8,7 @@ from collections import defaultdict
 from dotenv import load_dotenv
 import os
 from convert.todo_to_taskwarrior import parse_todo_txt_line
+import re
 
 load_dotenv()
 
@@ -17,9 +18,9 @@ todo_file_path = '/mnt/c/Users/tadej/Documents/Projects/free/productivity/todo/t
 def sync_tasks():
     todo_txt_tasks = load_from_todo_txt(todo_file_path)
     taskwarrior_tasks = load_from_taskwarrior()
-    todoist_tasks = load_from_todoist()
+    todoist_tasks = load_done_from_todoist()
 
-    all_tasks = convert_to_common_model(todo_txt_tasks, taskwarrior_tasks, todoist_tasks)
+    all_tasks = convert_to_common_model(todo_txt_tasks, taskwarrior_tasks, todoist_tasks['items'])
 
     done_tasks = detect_done_tasks(all_tasks)
 
@@ -66,13 +67,27 @@ def load_from_taskwarrior():
         print(f"Error loading tasks from Taskwarrior: {e}")
         return []
 
+def load_done_from_todoist():
+    headers = {
+        'Authorization': f'Bearer {TODOIST_API_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    try:
+        response = requests.get('https://api.todoist.com/sync/v9/completed/get_all', headers=headers)
+        response.raise_for_status()
+        tasks = response.json()
+        return tasks
+    except requests.exceptions.RequestException as e:
+        print(f"Error loading tasks from Todoist: {e}")
+        return []
+
 def load_from_todoist():
     headers = {
         'Authorization': f'Bearer {TODOIST_API_TOKEN}',
         'Content-Type': 'application/json'
     }
     try:
-        response = requests.get('https://api.todoist.com/rest/v2/tasks', headers=headers)
+        response = requests.get('https://api.todoist.com/rest/v3/tasks', headers=headers)
         response.raise_for_status()
         tasks = response.json()
         return tasks
@@ -100,7 +115,7 @@ def convert_to_common_model(todo_txt_tasks, taskwarrior_tasks, todoist_tasks):
             'id': task.get('uuid', ''),
             'description': task.get('description', '').strip().lower(),
             'is_completed': task.get('status') == 'completed',
-            'priority': task.get('priority', 'None'),
+            'priority': task.get('priority', ''),
             'due_date': task.get('due', ''),
             'projects': [task.get('project', '')],
             'tags': task.get('tags', []),
@@ -111,8 +126,8 @@ def convert_to_common_model(todo_txt_tasks, taskwarrior_tasks, todoist_tasks):
         common_tasks.append({
             'id': task.get('id', ''),
             'description': task.get('content', '').strip().lower(),
-            'is_completed': task.get('is_completed', False),
-            'priority': task.get('priority', 'None'),
+            'is_completed': True,
+            'priority': task.get('priority', ''),
             'due_date': task.get('due', {}).get('date', '') if task.get('due') else '',
             'projects': [task.get('project_id', '')],
             'tags': task.get('labels', []),
@@ -122,20 +137,11 @@ def convert_to_common_model(todo_txt_tasks, taskwarrior_tasks, todoist_tasks):
     return common_tasks
 
 def detect_done_tasks(all_tasks):
-    task_count = defaultdict(lambda: {'count': 0, 'task': None})
-    
-    for task in all_tasks:
-        description = task['description']
-        if description not in task_count:
-            task_count[description]['task'] = task
-
-        task_count[description]['count'] += 1
-
     done_tasks = []
-    
-    for description, data in task_count.items():
-        if data['count'] < 3:
-            done_tasks.append(data['task'])
+
+    for task in all_tasks:
+        if task['is_completed']:
+            done_tasks.append(task)
     
     return done_tasks
 
@@ -177,20 +183,30 @@ def update_todo_txt(done_tasks, deleted_tasks, todo_file):
             continue
 
         is_complete = line_stripped.startswith('x ')
+        has_project = line_stripped.startswith("(")
         task_priority = line_stripped[:2]
         created_date = ""
         if is_complete:
             created_date = line_stripped.split(" ")[3]
         else:
             created_date = line_stripped.split(" ")[1]
-        task_description = line_stripped[2:].strip() if is_complete else line_stripped
+        task_description = re.split(r'[+@]|due:', line_stripped)[0]
+        if is_complete and not has_project:
+            task_description = task_description[3:]
+        elif is_complete and has_project:
+            task_description = task_description[5:]
+        elif not is_complete and has_project:
+            task_description = task_description[1:]
+        elif not is_complete and not has_project:
+            task_description = task_description
 
+        task_description = task_description.strip()
         if task_description in processed_tasks or task_description in deleted_tasks_set:
             continue
-
-        if task_description in done_tasks_set:
+        
+        if done_tasks_set.__contains__(task_description):
             if not is_complete:
-                completion_date = datetime.datetime.now().strftime("%Y-%m-%d")
+                completion_date = datetime.now().strftime("%Y-%m-%d")
                 updated_tasks.append(f"x {task_priority} {completion_date} {created_date} {task_description}\n")
             else:
                 updated_tasks.append(line_stripped + '\n')
@@ -229,23 +245,24 @@ def update_todoist(done_tasks, deleted_tasks):
 
     for task in done_tasks:
         todoist_tasks = load_from_todoist()
-        task_id = next((t['id'] for t in todoist_tasks if t['description'] == task), None)
+        task_id = next((t['id'] for t in todoist_tasks if t['description']== task['description'] or t['content'] == task['description']), None)
 
         if task_id:
             try:
-                response = requests.post(f'https://api.todoist.com/rest/v2/tasks/{task_id}/close', headers=headers)
+                response = requests.post(f'https://api.todoist.com/rest/v3/tasks/{task_id}/close', headers=headers)
                 response.raise_for_status()
                 print(f"Marked task '{task_id}' as completed in Todoist")
             except requests.exceptions.RequestException as e:
                 print(f"Error marking task '{task_id}' as completed in Todoist: {e}")
 
     for task in deleted_tasks:
+        print(f"updating task {task} in todoist (is deleted)")
         todoist_tasks = load_from_todoist()
-        task_id = next((t['id'] for t in todoist_tasks if t['description'] == task), None)
+        task_id = next((t['id'] for t in todoist_tasks if t['description'] == task['description'] or t['content'] == task['description']), None)
 
         if task_id:
             try:
-                response = requests.delete(f'https://api.todoist.com/rest/v2/tasks/{task_id}', headers=headers)
+                response = requests.delete(f'https://api.todoist.com/rest/v3/tasks/{task_id}', headers=headers)
                 response.raise_for_status()
                 print(f"Deleted task '{task_id}' from Todoist")
             except requests.exceptions.RequestException as e:
